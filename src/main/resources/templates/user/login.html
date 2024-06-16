@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<th:block th:insert="~{_commun :: head}"></th:block>
+
+<body>
+
+	<th:block th:insert="~{_commun :: header}"></th:block>
+
+	<main class="container-fluid">
+
+		<div id="img1">
+			<div class=""
+				style="padding: 200px 10px; background-color: RGB(51, 47, 47, 0.5); height: 90vh; width: 90%; margin: auto; box-shadow: rgba(0, 0, 0, 0.54) 0px 3px 8px; border-radius: 10px;">
+
+				<div class="d-flex">
+
+					<div style="width: 60%">
+					<h1 class="text-end text-white pt-5" style="padding-right: 40px;">WELCOME</h1> 
+					</div>
+
+					<div class="card mx-1 block-end" style="width: 30%">
+						<div class="card-body p-4">
+						<h2 class="text-center">Se Connecter</h2>
+							<form th:action="@{/user/login}" method="post">
+								<div class="mb-2">
+
+									<input type="text" value="" class="form-control" id="" name="login"
+										placeholder="Veillez entrer votre login">
+								</div>
+								<div class="mb-2">
+
+									<input type="password" value="" class="form-control" name="mdp"
+										placeholder="Veillez entrer votre mot de passe ">
+								</div>
+
+								<button type="submit" class="btn btn-primary form-control mb-2">Se
+									connecter</button>
+							</form>
+							<p>
+								Vous n'avez pas de compte? <a th:href="@{/user/logon}">Creer un
+									compte</a>
+							</p>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</main>
+
+	<th:block th:insert="~{_commun :: footer}"></th:block>
+
+</body>
+</html>

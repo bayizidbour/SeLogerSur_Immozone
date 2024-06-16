@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<th:block th:insert="~{_commun :: head}"></th:block>
+
+<body>
+
+	<th:block th:insert="~{_commun :: header}"></th:block>
+
+
+<main class="container-fluid">
+		<h2 class=text-center>Liste des Terrains</h2>
+		<div class="d-flex gap-1" >
+			<div class="dropdown mb-3">
+				<button class="btn btn-secondary dropdown-toggle" type="button"
+					id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false">Options</button>
+				<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a class="dropdown-item" th:href="@{/propriete/admin/addPropriete/__3__}">Add Terrain</a>
+					<a class="dropdown-item bg-secondary" th:href="@{/propriete/admin/showListAppart}"><em>Aller vers Appartement</em></a>
+					<a class="dropdown-item bg-secondary" th:href="@{/propriete/admin/showListMaison}"><em>Aller vers Maiosn</em></a>
+				</div>
+			</div>
+		</div>
+		<table class="table table-striped table-hover">
+
+			<tr class="table-dark">
+				<th>IdPropriété</th>				
+				<th>Photo</th>
+				<th>Agence</th>
+				<th>Type de Propriéte</th>
+				<th>Catégorie</th>
+				<th>Surface Habitable</th>
+				<th>Adresse</th>
+				<th>Code Postal</th>
+				<th>Ville</th>
+				<th>Pays</th>
+				
+
+				<th>Actions</th>
+			</tr>
+
+			<tr th:each="prop: ${proprietes}" th:if="${prop.getClass().getName().equals('com.SeLoger_SurImmozone.model.Terrain')}">
+
+				<td th:text="${prop.idPropriete}"></td>
+				
+				<td > 
+					<img th:src="${prop.logo}" th:alt="${prop.type.nom}" /> 
+				</td>
+				<td th:text="${prop.agence.nomAg}"></td>
+				
+				<td>
+					<a th:href="@{/propriete/admin/show/__${prop.type.id}__}"> [[${prop.type.nom}]]</a>
+				</td>
+				<td th:text="${prop.venteOrLocate}"></td>
+				<td th:text="${prop.surfaceHabitable}"></td>
+				
+				<td th:text="${prop.adresse}"></td>
+				<td th:text="${prop.cp}"></td>
+				<td th:text="${prop.ville}"></td>
+				<td th:text="${prop.pays}"></td>
+
+				<td><a th:href="@{/propriete/admin/update/__${prop.idPropriete}__}"><i
+						class="fa-solid fa-pen"></i></a> 
+						- 
+					<a th:href="@{/propriete/admin/delete/__${prop.idPropriete}__}"><i
+						class="fa-solid fa-trash"></i></a>
+				</td>
+			</tr>
+
+		</table>
+
+	</main>
+	<th:block th:insert="~{_commun :: footer}"></th:block>
+
+</body>
+</html>

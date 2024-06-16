@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<th:block th:insert="~{_commun :: head}"></th:block>
+
+<body>
+
+	<th:block th:insert="~{_commun :: header}"></th:block>
+
+	<main class="container-fluid">
+
+		<div id="img1">
+			<div class=""
+				style="padding: 200px 10px; background-color: RGB(51, 47, 47, 0.5); height: 90vh; width: 90%; margin: auto; box-shadow: rgba(0, 0, 0, 0.54) 0px 3px 8px; border-radius: 10px;">
+
+				<div class="d-flex">
+
+					<div style="width: 60%">
+						<h1 class="text-end text-white pt-5" style="padding-right: 40px;">WELCOME</h1>
+					</div>
+
+					
+					<div class="card p-4 mt-2" style="width: 30%; margin: auto">
+						<h2 class="text-center">Inscription</h2>
+
+						<div th:if="${warning}" class="alert alert-danger text-center h6">
+							Login ou Email deja present</div>
+
+						<form th:action="@{/user/logon}" method="post"
+							th:object="${user}">
+							<input type="hidden" th:field="*{idUser}" />
+							<div class="">
+								<div class="col-6">
+									<div>Sexe</div>
+									<div class="mb-3 form-check form-check-inline">
+										<input type="radio" class="form-check-input"
+											th:field="*{sexe}" id="femme" value="Femme" name="sexe">
+										<label class="form-check-label" for="femme">Femme</label>
+									</div>
+									<div class="mb-3 form-check form-check-inline">
+										<input type="radio" class="form-check-input"
+											th:field="*{sexe}" id="homme" value="Homme" name="sexe">
+										<label class="form-check-label" for="homme">Homme</label>
+									</div>
+								</div>
+								<div class=" form-group mb-2">
+									<input type="text" class="form-control" th:field="*{nom}"
+										placeholder="Veillez entrer votre nom" />
+									<div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"
+										class="alert alert-danger p-1 mt-1"></div>
+								</div>
+								<div class=" form-group mb-2">
+									<input type="text" class="form-control" th:field="*{prenom}"
+										placeholder="Veillez entrer votre prenom" />
+									<div th:if="${#fields.hasErrors('prenom')}"
+										th:errors="*{prenom}" class="alert alert-danger p-1 mt-1 em"></div>
+
+								</div>
+								<div class=" form-group mb-2">
+									<input type="email" class="form-control" th:field="*{email}"
+										placeholder="Veillez entrer votre email" />
+									<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+										class="alert alert-danger p-1 mt-1 em"></div>
+
+								</div>
+								<div class=" form-group mb-2">
+									<input type="text" class="form-control" th:field="*{login}"
+										placeholder="Veillez entrer votre login" />
+									<div th:if="${#fields.hasErrors('login')}" th:errors="*{login}"
+										class="alert alert-danger p-1 mt-1 em"></div>
+
+								</div>
+								<div class="form-group mb-2">
+									<input type="password" class="form-control" th:field="*{mdp}"
+										placeholder="Veillez entrer votre mot de passe " />
+									<div th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}"
+										class="alert alert-danger p-1 mt-1 em"></div>
+
+								</div>
+								
+								<!--  <input type="hidden" th:field="*{statut}" value="CLIENT" name="statut"/>-->
+								
+							</div>
+							<div class=" form-group">
+								<button type="submit" class="btn btn-success form-control">S'inscrire</button>
+							</div>
+
+						</form>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+
+	</main>
+
+	<th:block th:insert="~{_commun :: footer}"></th:block>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

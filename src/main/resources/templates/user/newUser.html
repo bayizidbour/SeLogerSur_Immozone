@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<th:block th:insert="~{_commun :: head}"></th:block>
+
+<body>
+
+	<th:block th:insert="~{_commun :: header}"></th:block>
+
+
+
+	<main class="container-fluid bg-secondary">
+
+
+		<h2 class="text-center">Ajouter Utilisateur</h2>
+
+		<form th:action="@{/user/admin/ajoutUser}" method="post"
+			th:object="${user}">
+			<input type="hidden" th:field="*{idUser}" />
+			<div class="row">
+				<div class="col-6">
+					<div>Sexe</div>
+					<div class="mb-3 form-check form-check-inline">
+						<input type="radio" class="form-check-input" th:field="*{sexe}"
+							id="femme" value="Femme" name="sexe"> <label
+							class="form-check-label" for="femme">Femme</label>
+					</div>
+					<div class="mb-3 form-check form-check-inline">
+						<input type="radio" class="form-check-input" th:field="*{sexe}"
+							id="homme" value="Homme" name="sexe"> <label
+							class="form-check-label" for="homme">Homme</label>
+					</div>
+				</div>
+				<div class="col-6 form-group">
+					<label for="">Prénom</label> <input type="text"
+						th:field="*{prenom}" class="form-control" />
+					<div th:if="${#fields.hasErrors('prenom')}" th:errors="*{prenom}"
+						class="alert alert-danger p-1 mt-1"></div>
+				</div>
+				<div class="col-6 form-group">
+					<label for="">Nom</label> <input type="text" th:field="*{nom}"
+						class="form-control" />
+					<div th:if="${#fields.hasErrors('nom')}" th:errors="*{nom}"
+						class="alert alert-danger p-1 mt-1"></div>
+				</div>
+
+				<div class="col-6 form-group">
+					<label for="">Login</label> <input type="text" th:field="*{login}"
+						class="form-control" />
+					<div th:if="${#fields.hasErrors('login')}" th:errors="*{login}"
+						class="alert alert-danger p-1 mt-1"></div>
+				</div>
+				<div class="col-6 form-group">
+					<label for="">Password</label> <input type="password"
+						th:field="*{mdp}" class="form-control" />
+					<div th:if="${#fields.hasErrors('mdp')}" th:errors="*{mdp}"
+						class="alert alert-danger p-1 mt-1"></div>
+				</div>
+
+				<div class="col-6 form-group">
+					<label for="">Adresse</label> <input type="text"
+						th:field="*{adresse}" class="form-control" />
+					<div th:if="${#fields.hasErrors('adresse')}" th:errors="*{adresse}"
+						class="alert alert-danger p-1 mt-1"></div>
+				</div>
+
+				<div class="col-6 form-group">
+					<label for="">Code postal</label> <input type="number"
+						th:field="*{cp}" class="form-control" />
+					<div th:if="${#fields.hasErrors('cp')}" th:errors="*{cp}"
+						class="alert alert-danger p-1 mt-1"></div>
+				</div>
+				<div class="col-6 form-group">
+					<label for="">Ville</label> <input type="text" th:field="*{ville}"
+						class="form-control" />
+					<div th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}"
+						class="alert alert-danger p-1 mt-1"></div>
+				</div>
+				<div class="col-6 form-group">
+					<label for="">Téléphone</label> <input type="number"
+						th:field="*{tel}" class="form-control" />
+					<div th:if="${#fields.hasErrors('tel')}" th:errors="*{tel}"
+						class="alert alert-danger p-1 mt-1"></div>
+				</div>
+				<div class="col-6 form-group">
+					<label for="">E-mail</label> <input type="email"
+						th:field="*{email}" class="form-control" />
+					<div th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+						class="alert alert-danger p-1 mt-1"></div>
+				</div>
+				
+				<div class="col-6 form-group" mt-3>
+					<div><label for="">Agence</label></div>
+					<select name="" id="" th:field="*{agence}" class ="form-select bg-warning" >
+						<option th:each="agence : ${agences}" th:value="${agence.idAgence}" th:text= "${agence.nomAg}"></option>
+					</select>
+				</div>
+
+				<div class="d-flex col-6 form-group mt-3">
+
+					<div class="form-check form-check-inline">
+						<input type="radio" value="ADMIN" id="admin" name="statut"
+							class="form-check-input" /> <label for="admin">ADMIN</label>
+					</div>
+					&nbsp;
+					<div class="form-check form-check-inline">
+						<input type="radio" value="AGENT" name="statut" id="commercial"
+							class="form-ckeck-input" /> <label for="commercial">COMMERCIAL</label>
+					</div>
+					&nbsp;
+					<div class="form-check form-check-inline">
+						<input type="radio" value="CLIENT" name="statut" id="client"
+							class="form-ckeck-input" /> <label for="client">CLIENT</label>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="col-6">
+				<input type="submit" class="btn btn-success mt-4 mb-2" />
+			</div>
+
+		</form>
+
+	</main>
+	<th:block th:insert="~{_commun :: footer}"></th:block>
+
+</body>
+</html>

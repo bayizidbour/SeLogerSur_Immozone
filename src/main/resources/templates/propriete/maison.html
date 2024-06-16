@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<th:block th:insert="~{_commun :: head}"></th:block>
+
+<body>
+
+	<th:block th:insert="~{_commun :: header}"></th:block>
+
+	<main class="container-fluid">
+	
+	<h2 class="text-center">Ajouter/Modifier un Maison</h2>
+	
+	
+		
+		<div class="dropdown mb-3 text-center">
+			<button class="btn btn-primary dropdown-toggle" type="button"
+				id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false">Ajouter propriété</button>
+				
+			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+				<a class="dropdown-item" th:href="@{/propriete/admin/showListAppart}">Allez vers Liste d'Appartements</a> 
+				
+				<a class="dropdown-item" th:href="@{/propriete/admin/showListTerrain}">Allez vers Liste de Terrains</a> 
+			</div>
+		</div>
+		
+		<div class="card p-5">
+		<form th:action="@{/propriete/admin/maison}" method="post" th:object="${propriete}" enctype="multipart/form-data" >
+			<input type="hidden" th:field="*{idPropriete}"/>
+			<div class="row">
+				<div class="col-6">
+					<div>Catégorie</div>
+					<div class="mb-3 form-check form-check-inline">
+					    <input type="radio" class="form-check-input" th:field="*{venteOrLocate}" id="vente" value="Vente_Immobilière" name="venteOrLocate">
+					    <label class="form-check-label" for="vente">Vente Immobilière</label>
+					 </div>
+					 <div class="mb-3 form-check form-check-inline">
+					    <input type="radio" class="form-check-input" th:field="*{venteOrLocate}" id="location" value="Location" name="venteOrLocate">
+					    <label class="form-check-label" for="location">Location</label>
+					</div>
+				</div>
+				<div class="col-6 form-group">
+					<label for="">Surface Habitable</label>
+					<input type="number" th:field="*{surfaceHabitable}" class="form-control" />
+					<div th:if="${#fields.hasErrors('surfaceHabitable')}" th:errors="*{surfaceHabitable}" class="alert alert-danger p-1 mt-1"></div>
+				</div>
+				
+				<div class="col-6 form-group">
+					<label for="">Nombre de Pièces</label>
+					<input type="number" th:field="*{nbPiece}" class="form-control" />
+					<div th:if="${#fields.hasErrors('nbPiece')}" th:errors="*{nbPiece}" class="alert alert-danger p-1 mt-1"></div>
+				</div>
+				
+				<div class="col-6 form-group">
+					<label for="">Nombre de salle de bains</label>
+					<input type="text" th:field="*{nbSalleDeBain}" class="form-control" />
+					<div th:if="${#fields.hasErrors('nbSalleDeBain')}" th:errors="*{nbSalleDeBain}" class="alert alert-danger p-1 mt-1"></div>
+				</div>
+				
+				<div class="col-6 form-group">
+					<label for="">Prix </label>
+					<input type="number" th:field="*{prix}" class="form-control" />
+					<div th:if="${#fields.hasErrors('prix')}" th:errors="*{prix}" class="alert alert-danger p-1 mt-1"></div>
+				</div>
+				
+				<div class="col-6 form-group">
+					<label for="">Adresse </label>
+					<input type="text" th:field="*{adresse}" class="form-control" />
+					<div th:if="${#fields.hasErrors('adresse')}" th:errors="*{adresse}" class="alert alert-danger p-1 mt-1"></div>
+				</div>
+				
+				<div class="col-6 form-group">
+					<label for="">Code Postal </label>
+					<input type="number" th:field="*{cp}" class="form-control" />
+					<div th:if="${#fields.hasErrors('cp')}" th:errors="*{cp}" class="alert alert-danger p-1 mt-1"></div>
+				</div>
+				
+				<div class="col-6 form-group">
+					<label for="">Ville </label>
+					<input type="text" th:field="*{ville}" class="form-control" />
+					<div th:if="${#fields.hasErrors('ville')}" th:errors="*{ville}" class="alert alert-danger p-1 mt-1"></div>
+				</div>
+				
+				<div class="col-6 form-group">
+					<label for="">Pays </label>
+					<input type="text" th:field="*{pays}" class="form-control" />
+					<div th:if="${#fields.hasErrors('pays')}" th:errors="*{pays}" class="alert alert-danger p-1 mt-1"></div>
+				</div>
+				
+				<div class="col-6 form-group" mt-3>
+					<div><label for="">Agence</label></div>
+					<select name="" id="" th:field="*{agence}" class ="form-select bg-warning" >
+						<option th:each="agence : ${agences}" th:value="${agence.idAgence}" th:text= "${agence.nomAg}"></option>
+					</select>
+				</div>
+					
+				
+				<div class="col-6 form-group" mt-3>
+					<div><label for="">Type de Propriété</label></div>
+					<select name="" id="" th:field="*{type}" class ="form-select bg-secondary">
+						<option th:each="type : ${types}" th:value="${type.id}" th:text= "${type.nom}" th:if ="${type.nom.equals('Maison')}"></option>
+					</select>
+				</div>
+				
+				<div class="col-6 form-group">
+					<label for="">Description article</label>
+					<textarea th:field="*{description}" class="form-control" cols="30" rows="8"></textarea>
+					<div th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="alert alert-danger p-1 mt-1"></div>
+				</div>
+				
+				<div class="col-6 form-group">
+					<label for="">image</label>
+					<input type="file" name="photo" accept="image/*" class="form-control" />
+					<div th:if="${#fields.hasErrors('image')}" th:errors="*{image}" class="alert alert-danger p-1 mt-1"></div>
+				</div>
+			</div>
+			
+				
+			<div class="col-6">
+				<input type="submit" class="btn btn-success mt-4" />
+			</div>
+		
+		</form>
+	</div>
+	
+	</main>
+
+	<th:block th:insert="~{_commun :: footer}"></th:block>
+
+</body>
+</html>

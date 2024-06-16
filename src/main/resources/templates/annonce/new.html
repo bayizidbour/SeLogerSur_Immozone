@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<th:block th:insert="~{_commun :: head}"></th:block>
+
+<body>
+
+	<th:block th:insert="~{_commun :: header}"></th:block>
+
+	<main class="container-fluid">
+
+		<h2 class="text-center">Confirmer vous la publication ?</h2>
+
+
+
+
+
+		<div class="card p-5 " style="width: 20%; margin: auto; background-color: #BFCBDB;">
+		
+			<form th:action="@{/agent/annonce/save}" method="post"
+				 style="margin: auto;">
+				
+				
+				
+				<div class="row" >
+					
+					<div class="mb-2">					
+						<img th:src="${propriete.logo}" th:alt="${propriete.type.nom}" height="" width="100%"/> 
+					</div>
+					
+					<hr />
+					
+					<div class="col-6 form-group mb-2">
+
+						<input type="hidden" class="form-control"
+							th:name="*{dateNow}" th:value="${date_now}"
+							placeholder="Veillez entrer la date de debut" />
+					</div>
+
+
+					<div class="col-6 form-group mt-3">
+
+
+						<input type="hidden" class="form-control" th:name="idU"
+							th:value="${session.user?.idUser}" />
+
+					</div>
+
+					<div class="col-6 form-group mt-3">
+
+						<input type="hidden" class="form-control" th:name="idP"
+							th:value="${propriete.idPropriete}" />
+					</div>
+
+				</div>
+
+				<div class="mt-1 d-flex">
+					<div class="col-6">
+						<input type="submit" class="btn btn-success " value="Publier" />
+					</div>
+
+					<div class="col-6">
+						<a th:href="@{/propriete/admin}" class="btn btn-danger">Annuler</a>
+					</div>
+				</div>
+				
+			</form>
+		</div>
+
+	</main>
+
+	<th:block th:insert="~{_commun :: footer}"></th:block>
+
+</body>
+</html>

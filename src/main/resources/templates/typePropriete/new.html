@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<th:block th:insert="~{_commun :: head}"></th:block>
+
+<body>
+
+	<th:block th:insert="~{_commun :: header}"></th:block>
+	
+	<main class="container-fluid">
+		<h2 class="text-center" >Ajouter type Propriété</h2>
+		<div class="text-center" style="margin-left:auto; margin-right:auto; width:50%">
+			<form th:action="@{/type/admin}" method="post"
+				th:object="${type}">
+
+				<input type="hidden" th:field="*{id}" />
+				
+					<label for="">Type</label> <input type="text"
+						th:field="*{nom}" class="form-control" />
+					<div th:if="${#fields.hasErrors('nom')}"
+						th:errors="*{nom}" class="alert alert-danger p-1 mt-1"></div>
+				
+				<div class="">
+					<input type="submit" class="btn btn-success mt-4" />
+				</div>
+			</form>
+		</div>
+
+	</main>
+<th:block th:insert="~{_commun :: footer}"></th:block>
+</body>
+</html>

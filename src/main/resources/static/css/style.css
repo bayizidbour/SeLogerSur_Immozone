@@ -1,0 +1,244 @@
+@charset "ISO-8859-1";
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+.titre{
+	font-family: "Monotype Corsiva";
+	font-size: 30px;
+}
+
+#img1{
+	
+	background-image: url("https://img.freepik.com/photos-gratuite/quartier-residentiel-moderne-toit-vert-balcon-genere-par-ia_188544-10276.jpg?t=st=1717879344~exp=1717882944~hmac=7ded478eaea6a3b6cd8663728dd791387e007c0a031687802cabdc443f6beae9&w=1060");
+    background-size: cover;
+    height: 100vh;
+   padding: 20px;
+}
+
+#img2{
+	
+	background-color: #557092 ;
+    height: 100vh;
+   padding: 20px;
+   width: 100%;
+}
+
+header{
+	background: linear-gradient(to right top, #C9C9C5, black);
+	
+}
+
+#navcolor ul li a{
+	color: white;
+	
+}
+
+footer{
+	background: linear-gradient(to left top, #C9C9C5, black);
+	
+}
+
+.wrapper{
+	overflow: hidden;
+	position: relative;
+}
+
+/*page copier sur internet
+*/
+
+/*
+#content {
+    width: 100%;
+    padding: 35px 0 15px;
+    position: relative;
+    z-index: 1;
+}
+
+#page4 #content {
+    padding: 55px 0 15px;
+}
+
+.container_24 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 960px;
+}
+
+.p4 {
+    margin-bottom: 40px;
+}
+.wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.container_24 .grid_6 {
+    width: 230px;
+}
+
+.box-3 {
+    padding: 2px;
+    background: #fff;
+    border: 1px solid #e0e1e1;
+    text-align: center;
+}
+
+.box-3 .padding {
+    padding: 0 0 33px;
+    background: #f8f8f8;
+}
+
+.box-3 .title {
+    display: block;
+    height: 90px;
+    overflow: hidden;
+    font-family: trebuchet ms, Arial, Helvetica, sans-serif;
+    font-size: 24px;
+    line-height: 65px;
+    text-transform: uppercase;
+    color: #626262;
+    background: #eaeaea;
+    margin-bottom: 15px;
+}
+
+article,figcaption, figure {
+    display: block;
+}
+article,  figure {
+    background: 0 0;
+    border: 0;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+}
+
+figure {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 40px;
+    margin-inline-end: 40px;
+    unicode-bidi: isolate;
+}
+
+img {
+    vertical-align: top;
+}
+
+img{
+    background: 0 0;
+    border: 0;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+}
+
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.indent-bot {
+    margin-bottom: 20px;
+}
+
+p{
+    background: 0 0;
+    border: 0;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+}
+
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    unicode-bidi: isolate;
+}
+
+span{
+    background: 0 0;
+    border: 0;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+}
+
+.box-3 .title strong {
+    display: block;
+    font-weight: 400;
+    margin-top: -40px;
+}
+
+strong {
+    background: 0 0;
+    border: 0;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+}
+
+.button {
+    display: inline-block;
+    padding: 0 15px;
+    font-size: 13px;
+    line-height: 31px;
+    font-weight: 700;
+    color: #fff;
+    background: url(../images/button.gif) left top no-repeat #2a2a2a;
+    cursor: pointer;
+}
+
+.button  {
+    text-decoration: none;
+}
+
+
+a {
+    color: #df3c4b;
+    outline: none;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    color: #545454;
+    min-width: 960px;
+    background: url(../images/body-tail.gif) center top repeat;
+}
+
+body {
+    
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    vertical-align: top;
+}
+
+body {
+    display: block;
+    
+}*/

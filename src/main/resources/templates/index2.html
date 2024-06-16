@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+<th:block th:insert="~{_commun :: head}"></th:block>
+
+<body>
+
+	<th:block th:insert="~{_commun :: header}"></th:block>
+
+	<main class="">
+
+		<div class="p-4" style=" background-color: #BFCBDB;">
+			<h3 class="text-center">Annonces Ventes immobilières Appartement</h3>
+			<hr>
+			<div class="p-1" style="width: 90%; margin: auto;"
+				th:each="annonce : ${annonces}" th:if="${annonce.propriete.type.nom.equals('Appartement') || annonce.propriete.type.nom.equals('Maison') }">
+
+				<div class="d-flex" style="margin: auto;">
+					<div style="width: 20%;">
+						<img th:src="${annonce.propriete.logo}" th:alt="..." />
+
+					</div>
+
+
+					<div style="width: 60%; padding: 8px; ">
+						
+						<div class="d-flex">
+							<h4 th:text="${annonce.propriete.type.nom}">titre propriete</h4>
+							--
+							<h4 > Prix de vente: <span th:text="${annonce.propriete.prix}"></span> € </h4>
+						</div>
+						<div class="d-flex">
+
+							<p
+								style="padding: 3px; width: 20%; border-radius: 10px; background-color: yellow;" >
+								nombre pieces <span th:text="${annonce.propriete.nbPiece}" ></span>
+							</p>
+							<p
+								style="margin-left: 5px; padding: 3px; width: 23%; border-radius: 10px; background-color: yellow;">
+								nombre Salle de Bains <span
+									th:text="${annonce.propriete.nbSalleDeBain}"></span>
+							</p>
+
+						</div>
+
+						<div class="mb-1 text-primary" style="">
+							<span th:text="${annonce.propriete.adresse}"></span> 
+							--- 
+							<span th:text="${annonce.propriete.ville}"></span>
+							,
+							<span th:text="${annonce.propriete.cp}"></span>
+							
+							<em>
+								<span style="margin-left: 30%;">Publié par : </span>
+								<span class="text-end"  th:text="${annonce.user.agence.nomAg}"></span> Le 
+								<span class="text-end text-success"  th:text="${annonce.dateAnnonce}"></span>
+								
+							</em>	
+						</div>
+						
+						<p style="text-align: justify;" th:text="${annonce.propriete.description}"> </p>
+
+						
+					</div>
+
+
+					<div class="" style="width: 20%;">
+
+						<div class="mt-5" style="margin-left: 30px;">
+
+							<div class="mb-1">
+								<a class="btn btn-success" th:href="@{/admin/annonce/new}">Acheter</a>
+							</div>
+
+							<div class="mb-1">
+								<a class="btn btn-success" th:href="@{/admin/annonce/new}">Louer</a>
+							</div>
+
+							<div class="mb-1">
+								<a class="btn btn-info" th:href="@{/admin/annonce/new}">Commenter</a>
+							</div>
+
+							<div class="mb-1">
+								<a class="btn btn-primary" th:href="@{/admin/annonce/new}">Contacter
+									Agence</a>
+							</div>
+
+
+						</div>
+					</div>
+				</div>
+				<hr />
+			</div>
+
+
+
+
+		</div>
+
+
+	</main>
+
+	<th:block th:insert="~{_commun :: footer}"></th:block>
+
+</body>
+</html>
