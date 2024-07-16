@@ -46,6 +46,11 @@ public class ProprieteController {
 	
 	final String     UPLOADDIR = "src\\main\\resources\\static\\img\\";
 	
+	/**
+	 * LISTER TOUS LES TYPES DE PROPRIETE
+	 * @param model
+	 * @return
+	 */
 	@GetMapping
 	public String index(Model model) {
 		System.out.println("dans propriete/index");
@@ -53,18 +58,25 @@ public class ProprieteController {
 		return"propriete/index";
 	}
 	
+	/**
+	 * <p class="text-danger">LISTER TOUS LES TERRAINS</p>
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/showListAppart")
 	public String indexAppart (Model model) {
 		model.addAttribute("proprietes", proprieteService.getAllProprites());
 		return "propriete/showListAppart";
 	}
 	
+	//	LISTER TOUTES LES MAISONS
 	@GetMapping("/showListMaison")
 	public String indexMaison (Model model) {
 		model.addAttribute("proprietes", proprieteService.getAllProprites());
 		return "propriete/showListMaison";
 	}
 	
+	//	LISTER TOUS LES TERRAINS
 	@GetMapping("/showListTerrain")
 	public String indexTerrain (Model model) {
 		model.addAttribute("proprietes", proprieteService.getAllProprites());
@@ -72,7 +84,7 @@ public class ProprieteController {
 	}
 	
 	
-	
+	//	RENVOIES VERS LE FORMULAIRE QUI PERMET DE CREER ET AJOUTER UNE PROPRIETE
 	@GetMapping("/addPropriete/{id}")
 	public String addNewPropriete( @PathVariable Integer id, Model model) {
 		model.addAttribute("agences", agenceService.getAllAgences());
@@ -93,6 +105,7 @@ public class ProprieteController {
 		
 	}
 	
+	//	MODIFiER OU AJOUTER UNE PRORIETE DE TYPE APPARTEMENT EN BASE DE DONNEE
 	@PostMapping("/appart")	
 	public String insertAppart(@Valid Appartement appart, Model model, BindingResult result, RedirectAttributes ra,  @RequestParam( "photo" ) MultipartFile photo) throws IOException {
 		if(result.hasErrors()) {
@@ -130,7 +143,7 @@ public class ProprieteController {
 		return "redirect:/propriete/admin";
 	}
 	
-	
+	//	MODIFiER OU AJOUTER UNE PRORIETE DE TYPE MAISON EN BASE DE DONNEE
 	@PostMapping("/maison")
 	public String insertMaison(@Valid Maison maison, Model model, BindingResult result, RedirectAttributes ra, @RequestParam("photo") MultipartFile photo) throws IOException {
 		if(result.hasErrors()) {
@@ -168,7 +181,7 @@ public class ProprieteController {
 		return "redirect:/propriete/admin";
 	}
 	
-	
+	//	MODIFiER OU AJOUTER UNE PRORIETE DE TYPE TERRAIN EN BASE DE DONNEE
 	@PostMapping("/terrain")
 	public String insertTerrain(@Valid Terrain terrain, Model model, BindingResult result, RedirectAttributes ra, @RequestParam("photo") MultipartFile photo) throws IOException {
 		if(result.hasErrors()) {
@@ -206,6 +219,8 @@ public class ProprieteController {
 		return "redirect:/propriete/admin";
 	}
 	
+	
+	//	Modifier une propriété
 	@GetMapping("/update/{id}")
 	public String update( @PathVariable int id, RedirectAttributes ra, Model model) {
 		if(proprieteService.getProprieteById(id) == null) {
@@ -230,7 +245,7 @@ public class ProprieteController {
 	}
 	
 	
-	
+	//	Supprimer une propriété
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable int id, RedirectAttributes ra) {
 		

@@ -91,7 +91,7 @@
 				<div class="col-6 form-group" mt-3>
 					<div><label for="">Agence</label></div>
 					<select name="" id="" th:field="*{agence}" class ="form-select bg-warning" >
-						<option th:each="agence : ${agences}" th:value="${agence.idAgence}" th:text= "${agence.nomAg}"></option>
+						<option th:each="agence : ${agences}" th:value="${agence.idAgence}" th:text="${agence.nomAg}"></option>
 					</select>
 				</div>
 

@@ -22,12 +22,15 @@ public class TypeProprieteController {
 	@Autowired
 	TypeProprieteService typePrService;
 	
+	//LISTER TOUS LES TYPES PROPRIETE EXISTANT EN BASE DE DONNEE
 	@GetMapping
 	public String index(Model model) {
 		model.addAttribute("types", typePrService.getAlltypes());
 		return "typePropriete/index";
 	}
 	
+	
+	//RENVOIES LE FORMULAIRE PERMETTANT DE CREER UN NOUVEAU TYE DE PROPRIETE	
 	@GetMapping("/new")
 	public String addNewType(Model model) {
 		model.addAttribute("type", new TypePropriete());
@@ -35,6 +38,8 @@ public class TypeProprieteController {
 		return "typePropriete/new";
 	}
 	
+	
+	//	MODIFIER OU CREER UN TYPE DE PROPRIETE
 	@PostMapping
 	public String createType(@Valid TypePropriete typeP, BindingResult result, RedirectAttributes ra) {
 		
@@ -53,6 +58,8 @@ public class TypeProprieteController {
 		return"redirect:/type/admin";
 	}
 	
+	
+	//	RENVOIE LE FORMULAIRE PERMETTANT DE MODIFIER OU AJOUTER UN TYPE DE PROPRIETE
 	@GetMapping("/update/{id}")
 	public String update( @PathVariable int id, Model model, RedirectAttributes ra) {
 		
@@ -65,6 +72,8 @@ public class TypeProprieteController {
 		return "typePropriete/new";
 	}
 	
+	
+	//	SUPPRIMER UN TYPE DE PROPRIETE
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable int id, RedirectAttributes ra) {
 		

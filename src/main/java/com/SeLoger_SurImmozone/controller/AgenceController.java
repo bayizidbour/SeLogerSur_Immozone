@@ -26,6 +26,11 @@ public class AgenceController {
 	@Autowired
 	AgenceService agenceService;
 	
+	/**
+	 * LISTER TOUTES LES AGENCES SE TROUVANT EN BASE DE DONNEE
+	 * @param model
+	 * @return
+	 */
 	@GetMapping
 	public String index(Model model) {
 		model.addAttribute("agences", agenceService.getAllAgences() );
@@ -33,6 +38,8 @@ public class AgenceController {
 		return"agence/index";
 	}
 	
+	
+	//	RENVOIE LE FORMULAIRE PERMETTANT DE CREER ET D'AJOUTER UNE AGENCE EN BASE DE DONNEE
 	@GetMapping("/new")
 	public String addNewAgence(Model model) {
 		model.addAttribute("agence", new Agence());
@@ -40,6 +47,8 @@ public class AgenceController {
 		return"agence/new";
 	}
 	
+	
+	//	MODIFIER OU AJOUTER UNE AGENCE EN BASE DE DONNEE
 	@PostMapping
 	public String createAgence(@Valid Agence agence, Model model, BindingResult result, RedirectAttributes ra) {
 		
@@ -59,6 +68,8 @@ public class AgenceController {
 		return"redirect:/agence/admin";
 	}
 	
+	
+	//	RENVOIE LE FORMULAIRE PERMETTANT DE MODIFIER UNE AGENCE
 	@GetMapping("/update/{id}")
 	public String update(@PathVariable int id, Model model, RedirectAttributes ra) {
 		
@@ -72,6 +83,8 @@ public class AgenceController {
 		
 	}
 	
+	
+	//	SUPPRIMER UNE AGENCE
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable int id, RedirectAttributes ra) {
 		if (agenceService.getAgenceById(id) == null) {

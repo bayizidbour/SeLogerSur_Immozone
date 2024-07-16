@@ -80,4 +80,5 @@ public abstract class Propriete {
 	public String getLogo() {
         return "/img/" + this.type.getNom() + "/" + this.image;
     }
+		
 }

@@ -36,17 +36,24 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	/**
+	 * RENVOIES LE FORMULAIRE DE CONNEXION
+	 * @return
+	 */
 	@GetMapping("/login")
 	public String login () {
 		return "user/login";
 	}
 	
+	
+	//RENVOIES DU FORMULAIRE PERMETTANT DE LISTER TOUS LES UTILISATEURS SE TROUVANT EN BASE DE DONNEE
 	@GetMapping("/admin/listUser")
 	public String listUser(Model model) {
 		model.addAttribute("users", userService.getAllUsers());
 		return "user/listUser";
 	}
 	
+	//RENVOIES LE FORMULAIRE POUR L'AJOUT D'UN NOUVEAU UTILISATEUR
 	@GetMapping("/admin/newUser")
 	public String ajoutNewUser(Model model) {
 		model.addAttribute("user", new User());
@@ -54,21 +61,30 @@ public class UserController {
 		return "user/newUser";
 	}
 	
+	
+	//RENVOIES DU FORMULAIRE D'INSCRIPTION 
 	@GetMapping("/logon")
 	public String logon(Model model){
 		model.addAttribute("user", new User());
 		return "user/logon";
 	}
 	
+	
+	//DECONNEXION DE LA SESSION DE L'UTILISATEUR EN COURS
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		session.invalidate();
-		
-		return "redirect:/user/login";
+	    HttpSession admin = request.getSession();
+	    admin.invalidate();
+	    HttpSession agent = request.getSession();
+	    agent.invalidate();
+		return "redirect:/";
 	}
 	
+	
+	//INSCRIPTION D'UN UTILISATEUR DEPUIS LA PAGE D'INSCRIPTION
 	@PostMapping("/logon")
 	public String userLogon(@Valid User user, BindingResult result, Model model, RedirectAttributes ra) {
 		
@@ -93,6 +109,8 @@ public class UserController {
 		return "redirect:/index2";
 	}
 	
+	
+	//MODIFIER OU AJOUTER UN UTILISATEUR EN BASE DE DONNEE
 	@PostMapping("/admin/ajoutUser")
 	public String insertUser(@Valid User user, 
 			BindingResult result, 
@@ -125,21 +143,28 @@ public class UserController {
 	}
 	
 	
+	//AUTHENTIFICATION DE L'UTILISATEUR GRACE A SON Login ET Mdp
 	@PostMapping("/login")
 	public String login(
 			@RequestParam("login") String login, 
 			@RequestParam("mdp") String mdp, 
-			HttpSession session)  {
+			HttpSession session, HttpSession admin, HttpSession agent)  {
 		
 		User user = userRepo.findByLoginAndMdp(login, mdp);
 		
 		session.setAttribute("user", user);
 		
 		
-		System.out.println("login "+ login + "mdp "+ mdp );
+			admin.setAttribute("admin", Statut.ADMIN);
+			agent.setAttribute("agent", Statut.AGENT);
+		
+		
+		System.out.println("login "+ login + " mdp "+ mdp );
 		return "user/login";
 	}
 	
+	
+	//RENVOIE LE FORMULAIRE PERMETTANT DE MODIFIER UN UTILISATEUR VIA SON id
 	@GetMapping( "/update/{id}" )
 	public String update(@PathVariable int id, Model model, RedirectAttributes ra) {
 		if (userService.getUserById(id) == null) {
@@ -153,6 +178,8 @@ public class UserController {
 		
 	}
 	
+	
+	//SUPPRIMER UN UTILISATEUR VIA SON id
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable int id, RedirectAttributes ra) {
 		if(userService.getUserById(id) == null) {

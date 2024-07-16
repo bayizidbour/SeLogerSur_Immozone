@@ -18,7 +18,7 @@
 					<h1 class="text-end text-white pt-5" style="padding-right: 40px;">WELCOME</h1> 
 					</div>
 
-					<div class="card mx-1 block-end" style="width: 30%">
+					<div th:if="${session.user == null}" class="card mx-1 block-end" style="width: 30%">
 						<div class="card-body p-4">
 						<h2 class="text-center">Se Connecter</h2>
 							<form th:action="@{/user/login}" method="post">

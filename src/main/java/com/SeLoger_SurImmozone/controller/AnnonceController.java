@@ -38,6 +38,34 @@ public class AnnonceController {
 	@Autowired
 	UserService userService;
 	
+	/**
+	 * LISTER TOUTES LES ANNONCES SE TROUVANT EN BASE DE DONNEE ET LES MODIFIER/SUPPRIMER	
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("listAnnonce")
+	public String listAnnonces(Model model) {
+		model.addAttribute("annonces", annonceService.getAllAnnonces());
+		return"annonce/listAnnonce";
+	}
+	
+	
+	/**
+	 * LISTER TOUTES LES ANNONCES PUBLIEES POUR LES INTERNAUTES 
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("/indT")
+	public String indexTerrain(Model model) {
+		model.addAttribute("annonces", annonceService.getAllAnnonces());
+		return"index3";
+	}
+	
+	/**
+	 * LISTER TOUTES LES ANNONCES PUBLIEES POUR LES INTERNAUTES 
+	 * @param model
+	 * @return
+	 */
 	@GetMapping
 	public String index(Model model) {
 		model.addAttribute("annonces", annonceService.getAllAnnonces());
@@ -45,7 +73,7 @@ public class AnnonceController {
 	}
 	
 	
-	
+	//RENVOIES LA PAGE DU FORMULAIRE PERMETTANT DE CREER ET AJOUTER UNE ANNONCE EN BASE DE DONNEE	
 	@GetMapping("/newAnnonce/{id}")
 	public String createAnnonce(@PathVariable Integer id, Model model, HttpServletRequest request) {
 		
@@ -62,6 +90,7 @@ public class AnnonceController {
 		return "annonce/new";
 	}
 	
+	//	AJOUTER UNE ANNONCE EN BASE DE DONNEE
 	@PostMapping("/save")
 	public String save(@RequestParam("idU") Integer idU, @RequestParam("idP") Integer idP ) {
 		
@@ -84,6 +113,20 @@ public class AnnonceController {
 	} 
 	
 	
+	
+	//	SUPPRIMER UNE ANNONCE
+	@GetMapping("/delete/{id}")
+	public String delete(@PathVariable int id, RedirectAttributes ra) {
+		
+		if(annonceService.getAnnonceById(id) == null) {
+			ra.addFlashAttribute("warning", "Cette annonce n'existe pas !");
+			return "redirect:/agent/annonce/listAnnonce";
+		}
+		
+		annonceService.deleteAnnonceById(id);
+		ra.addFlashAttribute("success", "Annonce supprimée avec succès!");
+		return "redirect:/agent/annonce/listAnnonce";
+	}
 	
 	
 }

@@ -27,7 +27,7 @@ public class Agence {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idAgence;
 	
-	@NotBlank
+	
 	@Size(min = 2, max=30)
 	@Column(length = 30,nullable = false)
 	private String nomAg;
